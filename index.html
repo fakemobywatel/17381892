@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mikemp3</title>
+    <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -57,19 +58,29 @@
 </head>
 <body>
     <header>
-        <h1>mikemp3</h1>
+        <h1>ig; ripmike2017</h1>
     </header>
     <div class="container">
-        <div class="buttons">
-            <a href="https://www.instagram.com" target="_blank">Instagram</a> 
-            <a href="https://www.discord.com" target="_blank">Discord</a>
-            <a href="tel:+1234567890">Phone number</a>
-        </div>
-        <h2>Uploaded files</h2>
-        <video>
-                      <source src="https://cdn.discordapp.com/attachments/1266888220545781881/1268665985653669960/frajer.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+  <video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="1280"
+    height="720"
+    poster=""
+    data-setup="{}"
+  >
+    <source src="https://files.catbox.moe/q2qvtx.mp4" type="video/mp4" />
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank"
+        >supports HTML5 video</a
+      >
+    </p>
+  </video>
+      <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
     </div>
     <footer>
         &copy; 2024 mikemp3.xyz
