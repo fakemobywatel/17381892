@@ -1,90 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mikemp3</title>
-    <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+    <title>FAME MMA 22 - Restream</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212;
-            color: #f4f4f4;
-        }
-        header {
-            background-color: #1f1f1f;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        h1 {
-            margin: 0;
-        }
-        .container {
-            padding: 20px;
-        }
-        .buttons {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
-        }
-        .buttons a {
-            text-decoration: none;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            font-family: Arial, sans-serif;
             color: white;
-            background-color: #333;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .buttons a:hover {
-            background-color: #555;
-        }
-        h2 {
-            margin-top: 40px;
-        }
-        footer {
             text-align: center;
-            padding: 10px;
-            background-color: #1f1f1f;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+        }
+
+        #loading {
+            border: 8px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 8px solid #3498db;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #content {
+            display: none;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .note {
+            font-size: 0.9em;
+            color: #bbb;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>ig; ripmike2017</h1>
-        <p> Dox na kesego cwela -> <a href="https://doxbin.org/upload/KesyOskarWygodaZaGadka"> LINK </a> </p>
-    </header>
-    <div class="container">
-  <video
-    id="my-video"
-    class="video-js"
-    controls
-    preload="auto"
-    width="1280"
-    height="720"
-    poster=""
-    data-setup="{}"
-  >
-    <source src="https://files.catbox.moe/q2qvtx.mp4" type="video/mp4" />
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a
-      web browser that
-      <a href="https://videojs.com/html5-video-support/" target="_blank"
-        >supports HTML5 video</a
-      >
-    </p>
-  </video>
-      <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+    <div id="loading"></div>
+
+    <div id="content">
+        <h1>FAME MMA 22 - Restream</h1>
+        <p><a href="https://instagram.com/ripmike2017" target="_blank">Link do Instagrama</a></p>
+        <p class="note">Na instagramie będzie info o linku do transmisji po darmowych walkach - follow przed 31.08.2024 21:30</p>
     </div>
-    <footer>
-        &copy; 2024 mikemp3.xyz
-    </footer>
+
+    <script>
+        setTimeout(function() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }, 3500);
+    </script>
 </body>
 </html>
