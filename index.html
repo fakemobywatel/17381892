@@ -10,12 +10,15 @@
 <meta property="og:image:height" content="250">
     <title>mMmMmMmMm</title>
     <style>
+        * {
+            cursor: url('https://i.ibb.co/WH7K0v5/icons8-cursor-32.png') 16 16, auto;
+        }
+        
         body {
             margin: 0;
             padding: 0;
             overflow: hidden;
             background-color: #000;
-            cursor: url('https://i.ibb.co/KDLbWPF/cursor.png'), auto;
         }
 
         #container {
@@ -60,48 +63,50 @@
 
     <!-- CDN Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Animacja tytułu strony
-        let title = document.title;
-        let titleArray = title.split("");
-        let counter = 0;
+<script>
+    // Animacja tytułu strony
+    let title = document.title;
+    let titleArray = title.split("");
+    let counter = 0;
 
-        function animateTitle() {
-            document.title = titleArray.slice(0, counter).join("");
-            counter = (counter + 1) % (titleArray.length + 1);
-            setTimeout(animateTitle, 200);
-        }
-        animateTitle();
+    function animateTitle() {
+        document.title = titleArray.slice(0, counter).join("");
+        counter = (counter + 1) % (titleArray.length + 1);
+        setTimeout(animateTitle, 200);
+    }
+    animateTitle();
 
-        // Odtwarzanie muzyki w tle po załadowaniu strony
-        window.onload = () => {
-            document.getElementById('background-music').play();
-        };
+    // Odtwarzanie muzyki w tle po załadowaniu strony
+    window.onload = () => {
+        document.getElementById('background-music').play();
+    };
 
-        // Konfiguracja Particles.js
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 100, density: { enable: true, value_area: 800 } },
-                color: { value: '#ffffff' },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+    // Konfiguracja Particles.js bez linii łączących
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 100, density: { enable: true, value_area: 800 } },
+            color: { value: '#ffffff' },
+            opacity: { value: 0.5, random: false },
+            size: { value: 3, random: true },
+            line_linked: { enable: false }, // Wyłączamy linie między cząsteczkami
+            move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: { enable: false, mode: 'repulse' },
+                onclick: { enable: false, mode: 'push' },
+                resize: true
             },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                },
-                modes: {
-                    repulse: { distance: 100, duration: 0.4 },
-                    push: { particles_nb: 4 }
-                }
-            },
-            retina_detect: true
-        });
-    </script>
+            modes: {
+                repulse: { distance: 100, duration: 0.4 },
+                push: { particles_nb: 4 }
+            }
+        },
+        retina_detect: true
+    });
+</script>
+
+    
 </body>
 </html>
