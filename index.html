@@ -3,75 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAME MMA 22 - Restream</title>
+    <meta property="og:title" content="m">
+<meta property="og:description" content="l$">
+    <meta property="og:image" content="https://i.ibb.co/m8D9Vgw/money.gif">
+<meta property="og:image:width" content="250">
+<meta property="og:image:height" content="250">
+    <title>mMmMmMmMm</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            overflow: hidden;
             background-color: #000;
-            font-family: Arial, sans-serif;
-            color: white;
-            text-align: center;
+            cursor: url('https://i.ibb.co/KDLbWPF/cursor.png'), auto;
         }
 
-        #loading {
-            border: 8px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 8px solid #3498db;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
+        #container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        #logo img {
+            width: 200px;
+            cursor: pointer;
         }
 
-        #content {
-            display: none;
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .note {
-            font-size: 0.9em;
-            color: #bbb;
-            margin-top: 10px;
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.5;
         }
     </style>
 </head>
 <body>
-    <div id="loading"></div>
+    <!-- Kontener dla animacji particles -->
+    <div id="particles-js"></div>
 
-    <div id="content">
-        <h1>FAME MMA 22 - Restream</h1>
-        <p><a href="https://instagram.com/ripmike2017" target="_blank">Link do Instagrama</a></p>
-        <p class="note">Na instagramie będzie info o linku do transmisji po darmowych walkach - follow przed 31.08.2024 21:30</p>
+    <!-- Logo -->
+    <div id="container">
+        <div id="logo" onclick="window.location.href='https://doxbin.com/user/mikemp3'">
+            <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo">
+        </div>
     </div>
 
+    <!-- Player audio -->
+    <audio id="background-music" loop>
+        <source src="rich.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- CDN Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        setTimeout(function() {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-        }, 3500);
+        // Animacja tytułu strony
+        let title = document.title;
+        let titleArray = title.split("");
+        let counter = 0;
+
+        function animateTitle() {
+            document.title = titleArray.slice(0, counter).join("");
+            counter = (counter + 1) % (titleArray.length + 1);
+            setTimeout(animateTitle, 200);
+        }
+        animateTitle();
+
+        // Odtwarzanie muzyki w tle po załadowaniu strony
+        window.onload = () => {
+            document.getElementById('background-music').play();
+        };
+
+        // Konfiguracja Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
     </script>
 </body>
 </html>
