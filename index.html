@@ -27,6 +27,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
+            opacity: 0; /* Ukryte na początku */
+            transition: opacity 1s ease-in-out; /* Animacja pojawiania się */
         }
 
         #logo img {
@@ -50,8 +52,8 @@
     <div id="particles-js"></div>
 
     <!-- Logo -->
-    <div id="container">
-        <div id="logo" onclick="window.location.href='https://doxbin.com/user/mikemp3'">
+    <div id="container" onclick="playMusic();">
+        <div id="logo">
             <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo">
         </div>
     </div>
@@ -77,9 +79,10 @@
     animateTitle();
 
     // Odtwarzanie muzyki w tle po załadowaniu strony
-    window.onload = () => {
-        document.getElementById('background-music').play();
-    };
+      function playMusic() {
+            document.getElementById('background-music').play();
+            document.getElementById('container').style.opacity = 1; // Pokaż logo
+        }
 
     // Konfiguracja Particles.js bez linii łączących
     particlesJS('particles-js', {
@@ -105,6 +108,11 @@
         },
         retina_detect: true
     });
+
+            document.body.addEventListener('click', () => {
+            document.getElementById('container').style.opacity = 1;
+            playMusic();
+        });
 </script>
 
     
