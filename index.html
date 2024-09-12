@@ -29,6 +29,7 @@
             z-index: 10;
             opacity: 0; /* Ukryte na początku */
             transition: opacity 1s ease-in-out; /* Animacja pojawiania się */
+            pointer-events: none; /* Brak interakcji z logo przed kliknięciem */
         }
 
         #logo img {
@@ -52,9 +53,9 @@
     <div id="particles-js"></div>
 
     <!-- Logo -->
-    <div id="container" onclick="playMusic();">
+    <div id="container">
         <div id="logo">
-            <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo">
+            <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo" onclick="window.open('https://doxbin.com/user/mikemp3', '_blank');">
         </div>
     </div>
 
@@ -78,11 +79,17 @@
     }
     animateTitle();
 
-    // Odtwarzanie muzyki w tle po załadowaniu strony
-      function playMusic() {
+     // Funkcja do odtwarzania muzyki i pokazania logo
+        function showLogoAndPlayMusic() {
             document.getElementById('background-music').play();
             document.getElementById('container').style.opacity = 1; // Pokaż logo
+            document.getElementById('container').style.pointerEvents = 'auto'; // Zezwól na interakcję z logo
+            document.body.removeEventListener('click', showLogoAndPlayMusic); // Usuń nasłuchiwacz kliknięcia po wykonaniu
         }
+
+        // Nasłuchiwacz kliknięcia na całym dokumencie
+        document.body.addEventListener('click', showLogoAndPlayMusic);
+
 
     // Konfiguracja Particles.js bez linii łączących
     particlesJS('particles-js', {
@@ -109,10 +116,7 @@
         retina_detect: true
     });
 
-            document.body.addEventListener('click', () => {
-            document.getElementById('container').style.opacity = 1;
-            playMusic();
-        });
+
 </script>
 
     
