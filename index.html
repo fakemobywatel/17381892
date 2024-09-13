@@ -167,9 +167,9 @@
             <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo">
         </div>
         <div id="menu" class="visible">
-            <button onclick="cwel()">Lista cweli</button>
-            <button onclick="git()">Lista gitów</button>
-            <button onclick="window.open('https://doxbin.com', '_blank')">Dxbin</button>
+            <button onclick="cwel()">Lista cweli</button><br>
+            <button onclick="git()">Lista gitów</button><br>
+            <button onclick="window.open('https://doxbin.net/user/mikemp3', '_blank')">Dxbin</button>
         </div>
     </div>
 
@@ -182,11 +182,9 @@
             <strong>Twizzy Rich</strong><br>
             Yeat
         </div>
-        <progress id="progress" value="0" max="100"></progress><br>
         <button onclick="prevTrack()">◄◄</button>
         <button onclick="togglePlay()">▶▐▐</button>
         <button onclick="nextTrack()">►►</button>
-        <input type="range" id="volume-slider" min="0" max="1" step="0.01" oninput="setVolume(this.value)" value="1">
     </div>
 
     <!-- Player audio -->
@@ -256,6 +254,7 @@
         }
 
         function showContent(id) {
+            hideLogo(); // Ukrywa logo
             const content = document.getElementById(id);
             content.classList.add('visible');
         }
@@ -266,6 +265,17 @@
                 content.classList.remove('visible');
                 content.style.display = 'none';
             });
+            showLogo(); // Pokazuje logo
+        }
+
+        function hideLogo() {
+            document.getElementById('logo').style.opacity = 0;
+            document.getElementById('logo').style.pointerEvents = 'none';
+        }
+
+        function showLogo() {
+            document.getElementById('logo').style.opacity = 1;
+            document.getElementById('logo').style.pointerEvents = 'auto';
         }
 
         // Obsługa playera
