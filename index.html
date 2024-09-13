@@ -203,6 +203,13 @@
         .username {
             color: #ff79c6;
         }
+
+        .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
         
     </style>
 </head>
@@ -244,6 +251,7 @@
 
     <!-- Sekcje, które się pokazują po kliknięciu -->
     <div id="cwel-content" class="content">
+        <div class="centered">
     <div class="user-card">
         <img src="https://cdn.discordapp.com/avatars/1193647162215649382/be88ef6653a3609e87da3dc3ea05b363.png?size=60" alt="User avatar">
         <div class="user-info">
@@ -259,8 +267,10 @@
         </div>
     </div>
     </div>
+    </div>
 
     <div id="git-content" class="content">
+    <div class="centered">
     <div class="user-card">
         <img src="https://cdn.discordapp.com/avatars/1018256370446901279/a_c527d88f3429f6b437833b06ebc6e66b.gif?size=60" alt="User avatar">
         <div class="user-info">
@@ -298,6 +308,7 @@
     </div>
         
     </div>
+    </div>
 
     <!-- CDN Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -314,13 +325,13 @@
         let isPlaying = false;
 
         // Funkcja do odtwarzania muzyki i pokazania menu
-        function showLogoAndPlayMusic() {
-            document.getElementById('background-music').play();
-            document.getElementById('container').style.opacity = 1;
-            document.getElementById('menu').style.display = 'block';
-            document.getElementById('container').style.pointerEvents = 'auto';
-            document.body.removeEventListener('click', showLogoAndPlayMusic);
-        }
+function showLogoAndPlayMusic() {
+    document.getElementById('background-music').play();
+    document.getElementById('container').style.opacity = 1;
+    document.getElementById('menu').classList.add('visible');
+    document.getElementById('container').style.pointerEvents = 'auto';
+    document.body.removeEventListener('click', showLogoAndPlayMusic);
+}
 
         // Funkcje do obsługi menu
         function cwel() {
@@ -338,16 +349,22 @@
             document.getElementById('back-menu').style.display = 'block';
         }
 
-        function showMenu() {
-            document.getElementById('menu').style.display = 'block';
-            document.getElementById('back-menu').style.display = 'none';
-            hideAllContent();
-        }
+function showMenu() {
+    document.getElementById('menu').classList.add('visible');
+    document.getElementById('back-menu').style.display = 'none';
+    hideAllContent();
+    resetLogoVisibility();
+}
 
-        function hideMenu() {
-            document.getElementById('menu').style.display = 'none';
-            document.getElementById('back-menu').style.display = 'block';
-        }
+
+function hideMenu() {
+    document.getElementById('menu').classList.remove('visible');
+    document.getElementById('back-menu').style.display = 'block';
+}
+
+        function resetLogoVisibility() {
+    document.body.addEventListener('click', showLogoAndPlayMusic);
+}
 
         function showContent(id) {
             hideLogo(); // Ukrywa logo
@@ -355,15 +372,12 @@
             content.classList.add('visible');
         }
 
-        function hideAllContent() {
-            const contents = document.querySelectorAll('.content');
-            contents.forEach(content => {
-                content.classList.remove('visible');
-                content.style.display = 'none';
-            });
-            showLogo(); // Pokazuje logo
-        }
-
+function hideAllContent() {
+    const contents = document.querySelectorAll('.content');
+    contents.forEach(content => {
+        content.classList.remove('visible');
+    });
+}
         function hideLogo() {
             document.getElementById('logo').style.opacity = 0;
             document.getElementById('logo').style.pointerEvents = 'none';
