@@ -71,6 +71,10 @@
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s, transform 0.3s;
+            font-family: "Pixelify Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
         }
 
         #menu button:hover {
@@ -154,6 +158,39 @@
             display: block;
             opacity: 1;
         }
+
+                .user-card {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            border: 2px solid #444;
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 400px;
+            height: 100px;
+        }
+        .user-card img {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .user-info span {
+            margin-bottom: 5px;
+        }
+        .user-id {
+            color: #bbb;
+        }
+        .username {
+            color: #ff79c6;
+        }
+        
     </style>
 </head>
 <body>
@@ -167,9 +204,9 @@
             <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo">
         </div>
         <div id="menu" class="visible">
-            <button onclick="cwel()">Lista cweli</button><br>
-            <button onclick="git()">Lista gitów</button><br>
-            <button onclick="window.open('https://doxbin.net/user/mikemp3', '_blank')">Dxbin</button>
+            <button onclick="cwel()">lista cweli</button><br>
+            <button onclick="git()">lista gitów</button><br>
+            <button onclick="window.open('https://doxbin.net/user/mikemp3', '_blank')">dxbin</button>
         </div>
     </div>
 
@@ -194,13 +231,59 @@
 
     <!-- Sekcje, które się pokazują po kliknięciu -->
     <div id="cwel-content" class="content">
-        <h2>Lista cweli</h2>
-        <p>Tu będzie lista cweli...</p>
+    <div class="user-card">
+        <img src="https://cdn.discordapp.com/avatars/1193647162215649382/be88ef6653a3609e87da3dc3ea05b363.png?size=60" alt="User avatar">
+        <div class="user-info">
+                      <span class="username">Nazwa: lildner</span>
+            <span class="user-id">ID: 1193647162215649382</span>
+        </div>
+    </div> <br>
+            <div class="user-card">
+        <img src="https://cdn.discordapp.com/avatars/1219377132627824847/a034a271649d95af2276a8f97c21bbd7.png?size=60" alt="User avatar">
+        <div class="user-info">
+                      <span class="username">Nazwa: yyankes</span>
+            <span class="user-id">ID: 1219377132627824847</span>
+        </div>
+    </div>
     </div>
 
     <div id="git-content" class="content">
-        <h2>Lista gitów</h2>
-        <p>Tu będzie lista gitów...</p>
+    <div class="user-card">
+        <img src="https://cdn.discordapp.com/avatars/1018256370446901279/a_c527d88f3429f6b437833b06ebc6e66b.gif?size=60" alt="User avatar">
+        <div class="user-info">
+                      <span class="username">Nazwa: somai</span>
+            <span class="user-id">ID: 1018256370446901279</span>
+        </div>
+    </div>
+            <div class="user-card">
+        <img src="https://cdn.discordapp.com/avatars/443026532517281795/c7edcb42f0fe98e62cee711c30df5491.png?size=60" alt="User avatar">
+        <div class="user-info">
+                      <span class="username">Nazwa: natychmiast</span>
+            <span class="user-id">ID: 443026532517281795</span>
+        </div>
+    </div>
+            <div class="user-card">
+        <img src="https://cdn.discordapp.com/avatars/1222999385282052269/a_101c4b34f6678f5c9e219a95b4c3b4bc.gif?size=60" alt="User avatar">
+        <div class="user-info">
+                      <span class="username">Nazwa: lightningstr3ke</span>
+            <span class="user-id">ID: 1222999385282052269</span>
+        </div>
+    </div>
+            <div class="user-card">
+        <img src="https://cdn.discordapp.com/avatars/961722810592559134/b9b8f6c288061c1dbceb53112e46d2e4.png?size=60" alt="User avatar">
+        <div class="user-info">
+                      <span class="username">Nazwa: tajgusss</span>
+            <span class="user-id">ID: 961722810592559134</span>
+        </div>
+    </div>
+            <div class="user-card">
+        <img src="https://cdn.discordapp.com/avatars/418807255488528384/0debc43782a8137c5d7d7e1acd66f85f.png?size=60" alt="User avatar">
+        <div class="user-info">
+                      <span class="username">Nazwa: isk34r</span>
+            <span class="user-id">ID: 418807255488528384</span>
+        </div>
+    </div>
+        
     </div>
 
     <!-- CDN Particles.js -->
