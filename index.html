@@ -10,6 +10,9 @@
     <meta property="og:image:height" content="250">
     <title>mMmMmMmMm</title>
     <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
         * {
             cursor: url('https://i.ibb.co/j3tvkdQ/curser.png') 16 16, auto;
         }
@@ -19,6 +22,10 @@
             padding: 0;
             overflow: hidden;
             background-color: #000;
+            font-family: "Pixelify Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
         }
 
         #container {
@@ -137,8 +144,10 @@
         /* Sekcja, która pojawia się po kliknięciu cwel() i git() */
         .content {
             display: none;
+            text-align: center;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            color: white;
         }
 
         .visible {
