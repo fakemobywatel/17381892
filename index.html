@@ -8,7 +8,20 @@
     <meta property="og:image" content="https://i.ibb.co/m8D9Vgw/money.gif">
     <meta property="og:image:width" content="250">
     <meta property="og:image:height" content="250">
-    <title>mMmMmMmMm</title>
+    <title>MIKEMP3</title>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const titleText = "mOnEy 📲💰💰";
+            let position = 0;
+
+            function animateTitle() {
+                document.title = titleText.substring(position) + titleText.substring(0, position);
+                position = (position + 1) % titleText.length;
+            }
+
+            setInterval(animateTitle, 300); // Zmiana co 300 ms
+        });
+    </script>
     <style>
 
         @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
