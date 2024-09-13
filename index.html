@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="m">
-<meta property="og:description" content="l$">
+        <meta property="og:title" content="m">
+<meta property="og:description" content="li$ta gitow i cweli">
     <meta property="og:image" content="https://i.ibb.co/m8D9Vgw/money.gif">
 <meta property="og:image:width" content="250">
 <meta property="og:image:height" content="250">
@@ -13,7 +13,7 @@
         * {
             cursor: url('https://i.ibb.co/j3tvkdQ/curser.png') 16 16, auto;
         }
-        
+
         body {
             margin: 0;
             padding: 0;
@@ -27,14 +27,47 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
-            opacity: 0; /* Ukryte na początku */
-            transition: opacity 1s ease-in-out; /* Animacja pojawiania się */
-            pointer-events: none; /* Brak interakcji z logo przed kliknięciem */
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            pointer-events: none;
         }
 
         #logo img {
             width: 200px;
             cursor: pointer;
+        }
+
+        #menu {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #menu button {
+            background-color: #222;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        #menu button:hover {
+            background-color: #555;
+        }
+
+        #back-menu {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #222;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 20;
         }
 
         #particles-js {
@@ -46,17 +79,80 @@
             z-index: 1;
             opacity: 0.5;
         }
+
+        /* Player w stylu Windows XP z zielono-czarnym motywem */
+        #music-player {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 300px;
+            background-color: #111;
+            color: #0f0;
+            border: 2px solid #0f0;
+            padding: 10px;
+            z-index: 20;
+        }
+
+        #music-player button {
+            background-color: #222;
+            color: #0f0;
+            border: 1px solid #0f0;
+            margin: 5px;
+            padding: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #music-player progress {
+            width: 100%;
+        }
+
+        /* Sekcja, która pojawia się po kliknięciu cwel() i git() */
+        .content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .visible {
+            display: block;
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
+
     <!-- Kontener dla animacji particles -->
     <div id="particles-js"></div>
 
     <!-- Logo -->
     <div id="container">
         <div id="logo">
-            <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo" onclick="window.open('https://doxbin.net/upload/listacweliupdatedeverydaybyripmike2017', '_blank');">
+            <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo">
         </div>
+        <div id="menu">
+            <button onclick="cwel()">Lista cweli</button>
+            <button onclick="git()">Lista gitów</button>
+            <button onclick="window.open('https://doxbin.com', '_blank')">Dxbin</button>
+        </div>
+    </div>
+
+    <!-- Przycisk powrotu do menu -->
+    <div id="back-menu" onclick="showMenu()">← Menu</div>
+
+    <!-- Player muzyczny -->
+    <div id="music-player">
+        <div id="track-info">
+            <strong>Twizzy Rich</strong><br>
+            Yeat
+        </div>
+        <progress id="progress" value="0" max="100"></progress><br>
+        <button onclick="prevTrack()">◄◄</button>
+        <button onclick="togglePlay()">▶▐▐</button>
+        <button onclick="nextTrack()">►►</button>
+        <button onclick="setVolume(0.1)">🔉</button>
+        <button onclick="setVolume(1)">🔊</button>
     </div>
 
     <!-- Player audio -->
@@ -64,61 +160,137 @@
         <source src="rich.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Sekcje, które się pokazują po kliknięciu -->
+    <div id="cwel-content" class="content">
+        <h2>Lista cweli</h2>
+        <p>Tu będzie lista cweli...</p>
+    </div>
+
+    <div id="git-content" class="content">
+        <h2>Lista gitów</h2>
+        <p>Tu będzie lista gitów...</p>
+    </div>
+
     <!-- CDN Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-    // Animacja tytułu strony
-    let title = document.title;
-    let titleArray = title.split("");
-    let counter = 0;
+    <script>
+        let tracks = [
+            { src: 'rich.mp3', title: 'Twizzy Rich', artist: 'Yeat' },
+            { src: 'out.mp3', title: 'Out the way', artist: 'Yeat' },
+            { src: 'sorry.mp3', title: 'Sorry Bout That', artist: 'Yeat' },
+            { src: 'mad.mp3', title: 'Mad Bout That', artist: 'Yeat' },
+            { src: 'minion.mp3', title: 'Rich Minion', artist: 'Yeat' }
+        ];
+        let currentTrackIndex = 0;
+        let audio = document.getElementById('background-music');
+        let isPlaying = false;
 
-    function animateTitle() {
-        document.title = titleArray.slice(0, counter).join("");
-        counter = (counter + 1) % (titleArray.length + 1);
-        setTimeout(animateTitle, 200);
-    }
-    animateTitle();
-
-     // Funkcja do odtwarzania muzyki i pokazania logo
+        // Funkcja do odtwarzania muzyki i pokazania menu
         function showLogoAndPlayMusic() {
             document.getElementById('background-music').play();
-            document.getElementById('container').style.opacity = 1; // Pokaż logo
-            document.getElementById('container').style.pointerEvents = 'auto'; // Zezwól na interakcję z logo
-            document.body.removeEventListener('click', showLogoAndPlayMusic); // Usuń nasłuchiwacz kliknięcia po wykonaniu
+            document.getElementById('container').style.opacity = 1;
+            document.getElementById('menu').style.display = 'block';
+            document.getElementById('container').style.pointerEvents = 'auto';
+            document.body.removeEventListener('click', showLogoAndPlayMusic);
         }
 
-        // Nasłuchiwacz kliknięcia na całym dokumencie
+        // Funkcje do obsługi menu
+        function cwel() {
+            hideMenu();
+            showContent('cwel-content');
+        }
+
+        function git() {
+            hideMenu();
+            showContent('git-content');
+        }
+
+        function showBackButton() {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('back-menu').style.display = 'block';
+        }
+
+        function showMenu() {
+            document.getElementById('menu').style.display = 'block';
+            document.getElementById('back-menu').style.display = 'none';
+            hideAllContent();
+        }
+
+        function hideMenu() {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('back-menu').style.display = 'block';
+        }
+
+        function showContent(id) {
+            const content = document.getElementById(id);
+            content.classList.add('visible');
+        }
+
+        function hideAllContent() {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                content.classList.remove('visible');
+                content.style.display = 'none';
+            });
+        }
+
+        // Obsługa playera
+        function loadTrack(index) {
+            currentTrackIndex = index;
+            audio.src = tracks[index].src;
+            document.getElementById('track-info').innerHTML = `<strong>${tracks[index].title}</strong><br>${tracks[index].artist}`;
+            if (isPlaying) audio.play();
+        }
+
+        function prevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+            loadTrack(currentTrackIndex);
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            loadTrack(currentTrackIndex);
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function setVolume(value) {
+            audio.volume = value;
+        }
+
+        // Nasłuchiwacz kliknięcia
         document.body.addEventListener('click', showLogoAndPlayMusic);
 
-
-    // Konfiguracja Particles.js bez linii łączących
-    particlesJS('particles-js', {
-        particles: {
-            number: { value: 100, density: { enable: true, value_area: 800 } },
-            color: { value: '#ffffff' },
-            opacity: { value: 0.5, random: false },
-            size: { value: 3, random: true },
-            line_linked: { enable: false }, // Wyłączamy linie między cząsteczkami
-            move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: {
-                onhover: { enable: false, mode: 'repulse' },
-                onclick: { enable: false, mode: 'push' },
-                resize: true
+        // Konfiguracja Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                opacity: { value: 0.5 },
+                size: { value: 3, random: true },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 2 }
             },
-            modes: {
-                repulse: { distance: 100, duration: 0.4 },
-                push: { particles_nb: 4 }
-            }
-        },
-        retina_detect: true
-    });
-
-
-</script>
-
-    
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: false, mode: 'repulse' },
+                    onclick: { enable: false, mode: 'push' }
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
 </body>
 </html>
