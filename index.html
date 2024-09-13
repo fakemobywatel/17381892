@@ -9,7 +9,7 @@
     <meta property="og:image:width" content="250">
     <meta property="og:image:height" content="250">
     <title>MIKEMP3</title>
-        <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             const titleText = "mOnEy 📲💰💰";
             let position = 0;
@@ -20,6 +20,133 @@
             }
 
             setInterval(animateTitle, 300); // Zmiana co 300 ms
+        });
+
+        // Funkcja do odtwarzania muzyki i pokazania menu
+        function showLogoAndPlayMusic() {
+            const backgroundMusic = document.getElementById('background-music');
+            backgroundMusic.play();
+            
+            // Pokazuje logo i menu
+            document.getElementById('container').style.opacity = 1;
+            document.getElementById('menu').style.display = 'block'; // Upewnij się, że menu jest widoczne
+            document.getElementById('menu').classList.add('visible');
+            document.getElementById('container').style.pointerEvents = 'auto';
+            
+            // Usuwanie nasłuchiwacza kliknięcia
+            document.body.removeEventListener('click', showLogoAndPlayMusic);
+        }
+
+        function cwel() {
+            hideMenu();
+            showContent('cwel-content');
+        }
+
+        function git() {
+            hideMenu();
+            showContent('git-content');
+        }
+
+        function showBackButton() {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('back-menu').style.display = 'block';
+        }
+
+        function showMenu() {
+            document.getElementById('menu').classList.add('visible');
+            document.getElementById('back-menu').style.display = 'none';
+            hideAllContent();
+            resetLogoVisibility();
+        }
+
+        function hideMenu() {
+            document.getElementById('menu').classList.remove('visible');
+            document.getElementById('back-menu').style.display = 'block';
+        }
+
+        function resetLogoVisibility() {
+            document.body.addEventListener('click', showLogoAndPlayMusic);
+        }
+
+        function showContent(id) {
+            hideLogo(); // Ukrywa logo
+            const content = document.getElementById(id);
+            content.classList.add('visible');
+        }
+
+        function hideAllContent() {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                content.classList.remove('visible');
+            });
+        }
+
+        function hideLogo() {
+            document.getElementById('logo').style.opacity = 0;
+            document.getElementById('logo').style.pointerEvents = 'none';
+        }
+
+        function showLogo() {
+            document.getElementById('logo').style.opacity = 1;
+            document.getElementById('logo').style.pointerEvents = 'auto';
+        }
+
+        // Obsługa playera
+        function loadTrack(index) {
+            currentTrackIndex = index;
+            audio.src = tracks[index].src;
+            document.getElementById('track-info').innerHTML = `<strong>${tracks[index].title}</strong><br>${tracks[index].artist}`;
+            if (isPlaying) audio.play();
+        }
+
+        function prevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+            loadTrack(currentTrackIndex);
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            loadTrack(currentTrackIndex);
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function setVolume(value) {
+            audio.volume = value;
+        }
+
+        // Nasłuchiwacz kliknięcia
+        document.body.addEventListener('click', showLogoAndPlayMusic);
+
+        // Konfiguracja Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                opacity: { value: 0.5 },
+                size: { value: 3, random: true },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 2 }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: false, mode: 'repulse' },
+                    onclick: { enable: false, mode: 'push' }
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
         });
     </script>
     <style>
