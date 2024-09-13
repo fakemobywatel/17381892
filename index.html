@@ -312,93 +312,93 @@
 
     <!-- CDN Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        let tracks = [
-            { src: 'rich.mp3', title: 'Twizzy Rich', artist: 'Yeat' },
-            { src: 'out.mp3', title: 'Out the way', artist: 'Yeat' },
-            { src: 'sorry.mp3', title: 'Sorry Bout That', artist: 'Yeat' },
-            { src: 'mad.mp3', title: 'Mad Bout That', artist: 'Yeat' },
-            { src: 'minion.mp3', title: 'Rich Minion', artist: 'Yeat' }
-        ];
-        let currentTrackIndex = 0;
-        let audio = document.getElementById('background-music');
-        let isPlaying = false;
+ <script>
+    let tracks = [
+        { src: 'rich.mp3', title: 'Twizzy Rich', artist: 'Yeat' },
+        { src: 'out.mp3', title: 'Out the way', artist: 'Yeat' },
+        { src: 'sorry.mp3', title: 'Sorry Bout That', artist: 'Yeat' },
+        { src: 'mad.mp3', title: 'Mad Bout That', artist: 'Yeat' },
+        { src: 'minion.mp3', title: 'Rich Minion', artist: 'Yeat' }
+    ];
+    let currentTrackIndex = 0;
+    let audio = document.getElementById('background-music');
+    let isPlaying = false;
 
-        // Funkcja do odtwarzania muzyki i pokazania menu
-function showLogoAndPlayMusic() {
-    document.getElementById('background-music').play();
-    document.getElementById('container').style.opacity = 1;
-    document.getElementById('menu').classList.add('visible');
-    document.getElementById('container').style.pointerEvents = 'auto';
-    document.body.removeEventListener('click', showLogoAndPlayMusic);
-}
+    // Funkcja do odtwarzania muzyki i pokazania menu
+    function showLogoAndPlayMusic() {
+        document.getElementById('background-music').play();
+        document.getElementById('container').style.opacity = 1;
+        document.getElementById('menu').classList.add('visible');
+        document.getElementById('container').style.pointerEvents = 'auto';
+        document.body.removeEventListener('click', showLogoAndPlayMusic);
+    }
 
-        // Funkcje do obsługi menu
-        function cwel() {
-            hideMenu();
-            showContent('cwel-content');
-        }
+    // Funkcje do obsługi menu
+    function cwel() {
+        hideMenu();
+        showContent('cwel-content');
+    }
 
-        function git() {
-            hideMenu();
-            showContent('git-content');
-        }
+    function git() {
+        hideMenu();
+        showContent('git-content');
+    }
 
-        function showBackButton() {
-            document.getElementById('menu').style.display = 'none';
-            document.getElementById('back-menu').style.display = 'block';
-        }
+    function showBackButton() {
+        document.getElementById('menu').style.display = 'none';
+        document.getElementById('back-menu').style.display = 'block';
+    }
 
-function showMenu() {
-    document.getElementById('menu').classList.add('visible');
-    document.getElementById('back-menu').style.display = 'none';
-    hideAllContent();
-    resetLogoVisibility();
-}
+    function showMenu() {
+        document.getElementById('menu').classList.add('visible');
+        document.getElementById('back-menu').style.display = 'none';
+        hideAllContent();
+        resetLogoVisibility();
+    }
 
+    function hideMenu() {
+        document.getElementById('menu').classList.remove('visible');
+        document.getElementById('back-menu').style.display = 'block';
+    }
 
-function hideMenu() {
-    document.getElementById('menu').classList.remove('visible');
-    document.getElementById('back-menu').style.display = 'block';
-}
+    function resetLogoVisibility() {
+        document.body.addEventListener('click', showLogoAndPlayMusic);
+    }
 
-        function resetLogoVisibility() {
-    document.body.addEventListener('click', showLogoAndPlayMusic);
-}
+    function showContent(id) {
+        hideLogo(); // Ukrywa logo
+        const content = document.getElementById(id);
+        content.classList.add('visible');
+    }
 
-        function showContent(id) {
-            hideLogo(); // Ukrywa logo
-            const content = document.getElementById(id);
-            content.classList.add('visible');
-        }
+    function hideAllContent() {
+        const contents = document.querySelectorAll('.content');
+        contents.forEach(content => {
+            content.classList.remove('visible');
+        });
+    }
 
-function hideAllContent() {
-    const contents = document.querySelectorAll('.content');
-    contents.forEach(content => {
-        content.classList.remove('visible');
-    });
-}
-        function hideLogo() {
-            document.getElementById('logo').style.opacity = 0;
-            document.getElementById('logo').style.pointerEvents = 'none';
-        }
+    function hideLogo() {
+        document.getElementById('logo').style.opacity = 0;
+        document.getElementById('logo').style.pointerEvents = 'none';
+    }
 
-        function showLogo() {
-            document.getElementById('logo').style.opacity = 1;
-            document.getElementById('logo').style.pointerEvents = 'auto';
-        }
+    function showLogo() {
+        document.getElementById('logo').style.opacity = 1;
+        document.getElementById('logo').style.pointerEvents = 'auto';
+    }
 
-        // Obsługa playera
-        function loadTrack(index) {
-            currentTrackIndex = index;
-            audio.src = tracks[index].src;
-            document.getElementById('track-info').innerHTML = `<strong>${tracks[index].title}</strong><br>${tracks[index].artist}`;
-            if (isPlaying) audio.play();
-        }
+    // Obsługa playera
+    function loadTrack(index) {
+        currentTrackIndex = index;
+        audio.src = tracks[index].src;
+        document.getElementById('track-info').innerHTML = `<strong>${tracks[index].title}</strong><br>${tracks[index].artist}`;
+        if (isPlaying) audio.play();
+    }
 
-        function prevTrack() {
-            currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-            loadTrack(currentTrackIndex);
+    function prevTrack() {
+        currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+        loadTrack(currentTrackIndex);
     }
 
     function nextTrack() {
@@ -446,5 +446,6 @@ function hideAllContent() {
         retina_detect: true
     });
 </script>
+
 </body> 
 </html>
