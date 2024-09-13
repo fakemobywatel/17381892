@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta property="og:title" content="m">
-<meta property="og:description" content="li$ta gitow i cweli">
+    <meta property="og:title" content="m">
+    <meta property="og:description" content="li$ta gitow i cweli">
     <meta property="og:image" content="https://i.ibb.co/m8D9Vgw/money.gif">
-<meta property="og:image:width" content="250">
-<meta property="og:image:height" content="250">
+    <meta property="og:image:width" content="250">
+    <meta property="og:image:height" content="250">
     <title>mMmMmMmMm</title>
     <style>
         * {
@@ -35,12 +35,24 @@
         #logo img {
             width: 200px;
             cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+
+        #logo img:hover {
+            transform: scale(1.1);
         }
 
         #menu {
             display: none;
             text-align: center;
             margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        #menu.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         #menu button {
@@ -51,11 +63,12 @@
             margin: 5px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         #menu button:hover {
             background-color: #555;
+            transform: scale(1.05);
         }
 
         #back-menu {
@@ -91,6 +104,9 @@
             border: 2px solid #0f0;
             padding: 10px;
             z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #music-player button {
@@ -101,10 +117,21 @@
             padding: 5px;
             cursor: pointer;
             font-size: 14px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #music-player button:hover {
+            background-color: #333;
+            transform: scale(1.1);
         }
 
         #music-player progress {
             width: 100%;
+        }
+
+        #volume-slider {
+            width: 80%;
+            margin-top: 10px;
         }
 
         /* Sekcja, która pojawia się po kliknięciu cwel() i git() */
@@ -118,7 +145,6 @@
             display: block;
             opacity: 1;
         }
-
     </style>
 </head>
 <body>
@@ -131,7 +157,7 @@
         <div id="logo">
             <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo">
         </div>
-        <div id="menu">
+        <div id="menu" class="visible">
             <button onclick="cwel()">Lista cweli</button>
             <button onclick="git()">Lista gitów</button>
             <button onclick="window.open('https://doxbin.com', '_blank')">Dxbin</button>
@@ -151,8 +177,7 @@
         <button onclick="prevTrack()">◄◄</button>
         <button onclick="togglePlay()">▶▐▐</button>
         <button onclick="nextTrack()">►►</button>
-        <button onclick="setVolume(0.1)">🔉</button>
-        <button onclick="setVolume(1)">🔊</button>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.01" oninput="setVolume(this.value)" value="1">
     </div>
 
     <!-- Player audio -->
@@ -245,52 +270,52 @@
         function prevTrack() {
             currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
             loadTrack(currentTrackIndex);
-        }
+    }
 
-        function nextTrack() {
-            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-            loadTrack(currentTrackIndex);
-        }
+    function nextTrack() {
+        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+        loadTrack(currentTrackIndex);
+    }
 
-        function togglePlay() {
-            if (isPlaying) {
-                audio.pause();
-            } else {
-                audio.play();
+    function togglePlay() {
+        if (isPlaying) {
+            audio.pause();
+        } else {
+            audio.play();
+        }
+        isPlaying = !isPlaying;
+    }
+
+    function setVolume(value) {
+        audio.volume = value;
+    }
+
+    // Nasłuchiwacz kliknięcia
+    document.body.addEventListener('click', showLogoAndPlayMusic);
+
+    // Konfiguracja Particles.js
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 100, density: { enable: true, value_area: 800 } },
+            color: { value: '#ffffff' },
+            opacity: { value: 0.5 },
+            size: { value: 3, random: true },
+            line_linked: { enable: false },
+            move: { enable: true, speed: 2 }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: { enable: false, mode: 'repulse' },
+                onclick: { enable: false, mode: 'push' }
+            },
+            modes: {
+                repulse: { distance: 100, duration: 0.4 },
+                push: { particles_nb: 4 }
             }
-            isPlaying = !isPlaying;
-        }
-
-        function setVolume(value) {
-            audio.volume = value;
-        }
-
-        // Nasłuchiwacz kliknięcia
-        document.body.addEventListener('click', showLogoAndPlayMusic);
-
-        // Konfiguracja Particles.js
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 100, density: { enable: true, value_area: 800 } },
-                color: { value: '#ffffff' },
-                opacity: { value: 0.5 },
-                size: { value: 3, random: true },
-                line_linked: { enable: false },
-                move: { enable: true, speed: 2 }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: false, mode: 'repulse' },
-                    onclick: { enable: false, mode: 'push' }
-                },
-                modes: {
-                    repulse: { distance: 100, duration: 0.4 },
-                    push: { particles_nb: 4 }
-                }
-            },
-            retina_detect: true
-        });
-    </script>
-</body>
+        },
+        retina_detect: true
+    });
+</script>
+</body> 
 </html>
