@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FortCheaX - mikemp3</title>
+    <style>
+        /* Resetowanie marginesów */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Główne ustawienia */
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Kontener projektu */
+        .project-container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #1f1f1f;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        /* Efekt powiększenia kontenera przy załadowaniu */
+        .project-container:hover {
+            transform: scale(1);
+        }
+
+        /* Nagłówek tytułu projektu */
+        .title {
+            font-size: 2.5em;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Autorzy */
+        .authors {
+            font-size: 1.2em;
+            color: #b0b0b0;
+            margin-bottom: 15px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        /* Opis projektu */
+        .description {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Styl przycisków */
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px 5px;
+            font-size: 1em;
+            color: #ffffff;
+            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        /* Efekt po najechaniu */
+        .button:hover {
+            background-color: #ff6b6b;
+            transform: scale(1.05);
+        }
+
+        /* Animacje */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="project-container">
+        <h1 class="title">FortCheaX v1.2</h1>
+        <p class="authors">Author: mikemp3, xancxv</p>
+        <p class="description">
+  The project is still under development. Open source cheats for fortnite. They include things like: <br>
+- Anticheat bypass<br>
+- Aimbot<br>
+- FastEdit/FastBuild<br>
+- Teleport (carefully)<br>
+- XRay<br>
+- Speed Boost<br>
+- Fast Reload<br>
+        </p>
+        <a href="https://discord.gg/czatuj" class="button">Download</a>
+        <a href="/donate" class="button">Donate</a>
+    </div>
+</body>
+</html>
