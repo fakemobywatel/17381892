@@ -3,463 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="m">
-    <meta property="og:description" content="li$ta gitow i cweli">
-    <meta property="og:image" content="https://i.ibb.co/m8D9Vgw/money.gif">
-    <meta property="og:image:width" content="250">
-    <meta property="og:image:height" content="250">
-    <title>MIKEMP3</title>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const titleText = "mOnEy 📲💰💰";
-            let position = 0;
-
-            function animateTitle() {
-                document.title = titleText.substring(position) + titleText.substring(0, position);
-                position = (position + 1) % titleText.length;
-            }
-
-            setInterval(animateTitle, 300); // Zmiana co 300 ms
-        });
-
-    </script>
+    <title>mikemp3</title>
     <style>
-
-        @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
-
+        /* Resetowanie marginesów */
         * {
-            cursor: url('https://i.ibb.co/j3tvkdQ/curser.png') 16 16, auto;
-        }
-
-        body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            background-color: #000;
-            font-family: "Pixelify Sans", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
+            box-sizing: border-box;
         }
 
-        #container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            pointer-events: none;
-        }
-
-        #logo img {
-            width: 200px;
-            cursor: pointer;
-            transition: transform 0.5s ease;
-        }
-
-        #logo img:hover {
-            transform: scale(1.1);
-        }
-
-        #menu {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-        }
-
-        #menu.visible {
-            display: block; /* Pokazuje menu */
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-
-
-        #menu button {
-            background-color: #222;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.3s;
-            font-family: "Pixelify Sans", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        #menu button:hover {
-            background-color: #555;
-            transform: scale(1.05);
-        }
-
-        #back-menu {
-            display: none;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: #222;
-            color: #fff;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 20;
-        }
-
-        #particles-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.5;
-        }
-
-        /* Player w stylu Windows XP z zielono-czarnym motywem */
-        #music-player {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            width: 300px;
-            background-color: #111;
-            color: #0f0;
-            border: 2px solid #0f0;
-            padding: 10px;
-            z-index: 20;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #music-player button {
-            background-color: #222;
-            color: #0f0;
-            border: 1px solid #0f0;
-            margin: 5px;
-            padding: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        #music-player button:hover {
-            background-color: #333;
-            transform: scale(1.1);
-        }
-
-        #music-player progress {
-            width: 100%;
-        }
-
-        #volume-slider {
-            width: 80%;
-            margin-top: 10px;
-        }
-
-        /* Sekcja, która pojawia się po kliknięciu cwel() i git() */
-        .content {
-            display: none;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            color: white;
-        }
-
-        .visible {
-            display: block;
-            opacity: 1;
-        }
-
-                .user-card {
+        /* Główne ustawienia tła i czcionki */
+        body {
+            background-color: #1a1a1a;
+            font-family: Arial, sans-serif;
+            color: #d3d3d3;
             display: flex;
             align-items: center;
-            background-color: #333;
-            border: 2px solid #444;
-            border-radius: 15px;
-            padding: 10px;
-            margin: 10px 0;
-            width: 400px;
-            height: 100px;
-        }
-        .user-card img {
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            margin-right: 15px;
-        }
-        .user-info {
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-        }
-        .user-info span {
-            margin-bottom: 5px;
-        }
-        .user-id {
-            color: #bbb;
-        }
-        .username {
-            color: #ff79c6;
+            min-height: 100vh;
         }
 
-        .centered {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-}
-        
+        /* Kontener menu */
+        .menu {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #2b2b2b;
+            width: 300px;
+        }
+
+        /* Styl nagłówka */
+        .menu h1 {
+            font-size: 2em;
+            color: #ff7979;
+            margin-bottom: 20px;
+        }
+
+        /* Styl przycisków */
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.1em;
+            text-align: center;
+            color: #d3d3d3;
+            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Efekt po najechaniu */
+        .button:hover {
+            background-color: #ff7979;
+            color: #1a1a1a;
+        }
     </style>
 </head>
 <body>
-
-    <!-- Kontener dla animacji particles -->
-    <div id="particles-js"></div>
-
-    <!-- Logo -->
-    <div id="container">
-        <div id="logo">
-            <img src="https://i.ibb.co/m8D9Vgw/money.gif" alt="Logo">
-        </div>
-        <div id="menu" style="display: none;">
-            <button onclick="cwel()">lista cweli</button><br>
-            <button onclick="git()">lista gitów</button><br>
-            <button onclick="window.open('https://doxbin.net/user/mikemp3', '_blank')">dxbin</button>
-        </div>
+    <div class="menu">
+        <h1>mikemp3</h1>
+        <a href="projects" class="button">My Projects</a>
+        <a href="donate" class="button">Donate</a>
     </div>
-
-    <!-- Przycisk powrotu do menu -->
-    <div id="back-menu" onclick="showMenu()">← Menu</div>
-
-    <!-- Player muzyczny -->
-    <div id="music-player">
-        <div id="track-info">
-            <strong>Twizzy Rich</strong><br>
-            Yeat
-        </div>
-        <button onclick="prevTrack()">◄◄</button>
-        <button onclick="togglePlay()">▶▐▐</button>
-        <button onclick="nextTrack()">►►</button>
-    </div>
-
-    <!-- Player audio -->
-    <audio id="background-music" loop>
-        <source src="rich.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Sekcje, które się pokazują po kliknięciu -->
-    <div id="cwel-content" class="content">
-        <div class="centered">
-    <div class="user-card">
-        <img src="https://cdn.discordapp.com/avatars/1193647162215649382/be88ef6653a3609e87da3dc3ea05b363.png?size=60" alt="User avatar">
-        <div class="user-info">
-                      <span class="username">Nazwa: lildner</span>
-            <span class="user-id">ID: 1193647162215649382</span>
-        </div>
-    </div> <br>
-            <div class="user-card">
-        <img src="https://cdn.discordapp.com/avatars/1219377132627824847/a034a271649d95af2276a8f97c21bbd7.png?size=60" alt="User avatar">
-        <div class="user-info">
-                      <span class="username">Nazwa: yyankes</span>
-            <span class="user-id">ID: 1219377132627824847</span>
-        </div>
-    </div>
-    </div>
-    </div>
-
-    <div id="git-content" class="content">
-    <div class="centered">
-    <div class="user-card">
-        <img src="https://cdn.discordapp.com/avatars/1018256370446901279/a_c527d88f3429f6b437833b06ebc6e66b.gif?size=60" alt="User avatar">
-        <div class="user-info">
-                      <span class="username">Nazwa: somai</span>
-            <span class="user-id">ID: 1018256370446901279</span>
-        </div>
-    </div>
-            <div class="user-card">
-        <img src="https://cdn.discordapp.com/avatars/443026532517281795/c7edcb42f0fe98e62cee711c30df5491.png?size=60" alt="User avatar">
-        <div class="user-info">
-                      <span class="username">Nazwa: natychmiast</span>
-            <span class="user-id">ID: 443026532517281795</span>
-        </div>
-    </div>
-            <div class="user-card">
-        <img src="https://cdn.discordapp.com/avatars/1222999385282052269/a_101c4b34f6678f5c9e219a95b4c3b4bc.gif?size=60" alt="User avatar">
-        <div class="user-info">
-                      <span class="username">Nazwa: lightningstr3ke</span>
-            <span class="user-id">ID: 1222999385282052269</span>
-        </div>
-    </div>
-            <div class="user-card">
-        <img src="https://cdn.discordapp.com/avatars/961722810592559134/b9b8f6c288061c1dbceb53112e46d2e4.png?size=60" alt="User avatar">
-        <div class="user-info">
-                      <span class="username">Nazwa: tajgusss</span>
-            <span class="user-id">ID: 961722810592559134</span>
-        </div>
-    </div>
-            <div class="user-card">
-        <img src="https://cdn.discordapp.com/avatars/418807255488528384/0debc43782a8137c5d7d7e1acd66f85f.png?size=60" alt="User avatar">
-        <div class="user-info">
-                      <span class="username">Nazwa: isk34r</span>
-            <span class="user-id">ID: 418807255488528384</span>
-        </div>
-    </div>
-        
-    </div>
-    </div>
-
-    <!-- CDN Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-    let tracks = [
-        { src: 'rich.mp3', title: 'Twizzy Rich', artist: 'Yeat' },
-        { src: 'out.mp3', title: 'Out the way', artist: 'Yeat' },
-        { src: 'sorry.mp3', title: 'Sorry Bout That', artist: 'Yeat' },
-        { src: 'mad.mp3', title: 'Mad Bout That', artist: 'Yeat' },
-        { src: 'minion.mp3', title: 'Rich Minion', artist: 'Yeat' }
-    ];
-    let currentTrackIndex = 0;
-    let audio = document.getElementById('background-music');
-    let isPlaying = false;
-
-    // Funkcja do odtwarzania muzyki i pokazania menu
-    function showLogoAndPlayMusic() {
-        const backgroundMusic = document.getElementById('background-music');
-        backgroundMusic.play();
-
-        // Pokazuje logo i menu
-        const logo = document.getElementById('logo');
-        const menu = document.getElementById('menu');
-        
-        logo.style.opacity = 1;
-        menu.style.display = 'block'; // Upewnij się, że menu jest widoczne
-        menu.classList.add('visible'); // Dodaje klasę widoczności
-        document.getElementById('container').style.pointerEvents = 'auto';
-
-        // Usuwanie nasłuchiwacza kliknięcia
-        document.body.removeEventListener('click', showLogoAndPlayMusic);
-    }
-
-    // Funkcje do obsługi menu
-    function cwel() {
-        hideMenu();
-        showContent('cwel-content');
-    }
-
-    function git() {
-        hideMenu();
-        showContent('git-content');
-    }
-
-    function showBackButton() {
-        document.getElementById('menu').style.display = 'none';
-        document.getElementById('back-menu').style.display = 'block';
-    }
-
-    function showMenu() {
-        document.getElementById('menu').classList.add('visible');
-        document.getElementById('back-menu').style.display = 'none';
-        hideAllContent();
-        resetLogoVisibility();
-    }
-
-    function hideMenu() {
-        document.getElementById('menu').classList.remove('visible');
-        document.getElementById('back-menu').style.display = 'block';
-    }
-
-    function resetLogoVisibility() {
-        document.body.addEventListener('click', showLogoAndPlayMusic);
-    }
-
-    function showContent(id) {
-        hideLogo(); // Ukrywa logo
-        const content = document.getElementById(id);
-        content.classList.add('visible');
-    }
-
-    function hideAllContent() {
-        const contents = document.querySelectorAll('.content');
-        contents.forEach(content => {
-            content.classList.remove('visible');
-        });
-    }
-
-    function hideLogo() {
-        document.getElementById('logo').style.opacity = 0;
-        document.getElementById('logo').style.pointerEvents = 'none';
-    }
-
-    function showLogo() {
-        document.getElementById('logo').style.opacity = 1;
-        document.getElementById('logo').style.pointerEvents = 'auto';
-    }
-
-    // Obsługa playera
-    function loadTrack(index) {
-        currentTrackIndex = index;
-        audio.src = tracks[index].src;
-        document.getElementById('track-info').innerHTML = `<strong>${tracks[index].title}</strong><br>${tracks[index].artist}`;
-        if (isPlaying) audio.play();
-    }
-
-    function prevTrack() {
-        currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
-        loadTrack(currentTrackIndex);
-    }
-
-    function nextTrack() {
-        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-        loadTrack(currentTrackIndex);
-    }
-
-    function togglePlay() {
-        if (isPlaying) {
-            audio.pause();
-        } else {
-            audio.play();
-        }
-        isPlaying = !isPlaying;
-    }
-
-    function setVolume(value) {
-        audio.volume = value;
-    }
-
-    // Nasłuchiwacz kliknięcia
-    document.body.addEventListener('click', showLogoAndPlayMusic);
-
-    // Konfiguracja Particles.js
-    particlesJS('particles-js', {
-        particles: {
-            number: { value: 100, density: { enable: true, value_area: 800 } },
-            color: { value: '#ffffff' },
-            opacity: { value: 0.5 },
-            size: { value: 3, random: true },
-            line_linked: { enable: false },
-            move: { enable: true, speed: 2 }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: {
-                onhover: { enable: false, mode: 'repulse' },
-                onclick: { enable: false, mode: 'push' }
-            },
-            modes: {
-                repulse: { distance: 100, duration: 0.4 },
-                push: { particles_nb: 4 }
-            }
-        },
-        retina_detect: true
-    });
-</script>
-
-
-</body> 
+</body>
 </html>
